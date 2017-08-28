@@ -14,7 +14,7 @@
       </div>
     </div>
   <% end %>
-
+<%= form_for @location do |f| %>
   <div class="form-group">
     <%= f.label :name, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -62,6 +62,47 @@
     <%= f.file_field :image %>
   </div>
 
+  <div class="card">
+      <div class="card-block">
+        <div id="map"></div>
+      </div>
+    </div>
+
+<div class="col-sm-3">
+  <%= f.text_field :longitude, class: "form-control" %>
+</div>
+
+<div class="col-sm-4">
+  <a href="#" id="find-on-map" class="btn btn-info btn-sm">Find on the map</a>
+</div>
+
+<%= f.submit 'Add!', class: 'btn btn-primary' %>
+<%end%>
+
+
+<h4>Enter either address or coordinates</h4>
+
+
+<div class="form-group row">
+  <div class="col-sm-1">
+    <%= f.label :latitude %>
+  </div>
+
+  <div class="col-sm-3">
+    <%= f.text_field :latitude, class: "form-control" %>
+  </div>
+
+  <div class="col-sm-1">
+    <%= f.label :longitude %>
+  </div>
+
+  <div class="col-sm-3">
+    <%= f.text_field :longitude, class: "form-control" %>
+  </div>
+</div>
+
+
+
    <div class="form-group">
       <strong>Images</strong>
       <div class="form-group">
@@ -79,5 +120,7 @@
                 locations_path, :class => 'btn btn-default' %>
     </div>
   </div>
+
+
 
 <% end %>

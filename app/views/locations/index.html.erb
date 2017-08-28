@@ -1,3 +1,14 @@
+<h4>import that data</h4>
+<%= form_tag import_locations_path, multipart:true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import CSV" %>
+<% end %>
+
+<%= form_tag json_import_locations_path, multipart:true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import JSON" %>
+<% end %>
+
 <%- model_class = Location -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
@@ -40,6 +51,19 @@
     <% end %>
   </tbody>
 </table>
+
+<header><h1 class="display-4">Locations</h1></header>
+
+<%= link_to 'Add location', new_location_path, class: 'btn btn-primary btn-lg' %>
+
+<div class="card">
+  <div class="card-block">
+    <ul>
+      <%= render @locations %>
+    </ul>
+  </div>
+</div>
+
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_location_path,

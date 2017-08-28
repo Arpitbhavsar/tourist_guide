@@ -1,0 +1,9 @@
+<header><h1 class="display-4"><%= @place.title %></h1></header>
+
+<p>Address: <%= @place.address %></p>
+<p>Coordinates: <%= @place.latitude %> <%= @place.longitude %></p>
+
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8&callback=initMap">
+    </script>

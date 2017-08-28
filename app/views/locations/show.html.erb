@@ -1,6 +1,6 @@
 <%- model_class = Location -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h1><%=t '.name', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
 <dl class="dl-horizontal">
@@ -23,6 +23,43 @@
   <%= image_tag(@location.image.thumb.url) if @location.image? %>
 </p>
 
+    <header><h1 class="display-4"><%= @location.name %></h1></header>
+    <p>Address: <%= @location.address %></p>
+    <p>Coordinates: <%= @location.latitude %> <%= @location.longitude %></p>
+
+
+    <div id="map"></div>
+    <%= link_to 'Edit', edit_location_path(@location) %>
+    <%= link_to 'Back', location_path %>
+    <%= link_to 'find_location', find_map_location_path(@location) %>
+    <style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+
+      <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8&callback=initMap">
+    </script>
+
+    <h3>My Google Maps Demo</h3>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var lat = <%= @location.latitude %>
+        var long = <%= @location.longitude %>
+        var uluru = {lat: lat, lng: long};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
 <%= link_to t('.back', :default => t("helpers.links.back")),
               locations_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
